@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="album"
+            type="learningprogramming.academy.recordshopfrontend.model.Album" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FB8560">
+
+        <ImageView
+            android:id="@+id/imgView_albumIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_AlbumTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="34dp"
+            android:text="@{album.title}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView_AlbumArtist"
+            app:layout_constraintStart_toEndOf="@id/imgView_albumIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48000002"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/textView_AlbumArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{album.artist}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView_AlbumTitle"
+            app:layout_constraintTop_toBottomOf="@id/textView_AlbumTitle"
+            tools:text="Artist" />
+
+        <TextView
+            android:id="@+id/textView_AlbumGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="16dp"
+            android:text="@{album.genre}"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/textView_AlbumTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.90"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Genre" />
+
+        <TextView
+            android:id="@+id/textView_AlbumReleasedYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="@{album.releasedYear}"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/textView_AlbumTitle"
+            app:layout_constraintStart_toEndOf="@id/textView_AlbumTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1999" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

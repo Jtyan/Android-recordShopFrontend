@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RecordShopFrontend</string>
+    <string name="my_record_shop">My Record Shop</string>
 </resources>
