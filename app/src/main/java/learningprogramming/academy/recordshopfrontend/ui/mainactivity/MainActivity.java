@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this)
                 .get(MainActivityViewModel.class);
+
         getAllAlbums();
     }
 

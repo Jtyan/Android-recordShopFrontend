@@ -3,6 +3,7 @@ package learningprogramming.academy.recordshopfrontend.repository;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -28,13 +29,13 @@ public class AlbumRepository {
 
         call.enqueue(new Callback<List<Album>>() {
             @Override
-            public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
+            public void onResponse(@NonNull Call<List<Album>> call, @NonNull Response<List<Album>> response) {
                 List<Album> albumList = response.body();
                 mutableLiveData.setValue(albumList);
             }
 
             @Override
-            public void onFailure(Call<List<Album>> call, Throwable throwable) {
+            public void onFailure(@NonNull Call<List<Album>> call, @NonNull Throwable throwable) {
                 Log.e("HTTP failure", throwable.getMessage());
             }
         });

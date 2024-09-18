@@ -13,13 +13,18 @@ import java.util.List;
 import learningprogramming.academy.recordshopfrontend.R;
 import learningprogramming.academy.recordshopfrontend.databinding.AlbumItemBinding;
 import learningprogramming.academy.recordshopfrontend.model.Album;
+import learningprogramming.academy.recordshopfrontend.repository.AlbumImageRepository;
+
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private Context context;
     private List<Album> albumList;
+    private AlbumImageRepository albumImageRepository;
+
 
     public AlbumAdapter(Context context, List<Album> albumList) {
         this.albumList = albumList;
+        albumImageRepository = new AlbumImageRepository();
     }
 
     @NonNull
@@ -35,6 +40,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     @Override
     public void onBindViewHolder(@NonNull AlbumViewHolder holder, int position) {
         Album album = albumList.get(position);
+        albumImageRepository.fetchAlbumImage(album.getTitle(), holder.albumItemBinding.imgViewAlbum);
         holder.albumItemBinding.setAlbum(album);
     }
 
@@ -52,4 +58,5 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
             this.albumItemBinding = albumItemBinding;
         }
     }
+
 }
