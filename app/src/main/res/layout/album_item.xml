@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FB8560">
+        android:background="#1E1E1E">
 
         <ImageView
             android:id="@+id/imgView_album"
@@ -30,11 +30,12 @@
             android:id="@+id/textView_AlbumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="34dp"
+            android:fontFamily="@font/adlam_display"
             android:text="@{album.title}"
+            android:textColor="#DCDCDC"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView_AlbumArtist"
@@ -48,8 +49,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/adlam_display"
             android:text="@{album.artist}"
+            android:textColor="#BEBEBE"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/textView_AlbumTitle"
             app:layout_constraintTop_toBottomOf="@id/textView_AlbumTitle"
@@ -59,10 +61,12 @@
             android:id="@+id/textView_AlbumGenre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:fontFamily="@font/adlam_display"
             android:text="@{album.genre}"
+            android:textColor="#BEBEBE"
             android:textSize="12sp"
             android:textStyle="bold"
+
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_AlbumReleasedYear"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.90"
@@ -74,7 +78,9 @@
             android:layout_width="29dp"
             android:layout_height="13dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/adlam_display"
             android:text="@{album.releasedYear}"
+            android:textColor="#BEBEBE"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/textView_AlbumArtist"
             app:layout_constraintStart_toStartOf="@+id/textView_AlbumTitle"

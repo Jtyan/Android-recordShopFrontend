@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/agbalumo"
+            android:fontFamily="@font/afacad_bold"
             android:text="@string/my_record_shop"
             android:textColor="#E5E5E5"
             android:textSize="30sp"
