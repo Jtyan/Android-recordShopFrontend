@@ -1,4 +1,4 @@
-package learningprogramming.academy.recordshopfrontend.ui.mainActivity;
+package learningprogramming.academy.recordshopfrontend.ui.mainactivity;
 
 import android.app.Application;
 
