@@ -107,6 +107,7 @@
             android:text="Add"
             android:textColor="#DCDCDC"
             app:cornerRadius="50dp"
+            app:icon="@drawable/music"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

@@ -17,11 +17,11 @@
 
         <ImageView
             android:id="@+id/imgView_album"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="95dp"
+            android:layout_height="96dp"
             android:layout_margin="8dp"
             android:contentDescription="@string/album_image"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/music_album"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
