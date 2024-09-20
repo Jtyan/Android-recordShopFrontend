@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="album"
+            type="learningprogramming.academy.recordshopfrontend.model.Album" />
+
+        <variable
+            name="clickHandlers"
+            type="learningprogramming.academy.recordshopfrontend.ui.addAlbum.AddAlbumClickHandlers" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1E1E1E"
+        tools:context=".ui.addAlbum.AddNewAlbumActivity">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_primary"
+            android:gravity="center"
+            android:paddingTop="20sp"
+            android:paddingBottom="20sp"
+            android:text="Add an Album"
+            android:textColor="#DCDCDC"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editText_albumTitle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Album Title"
+            android:text="@={album.title}"
+            android:textColor="#DCDCDC"
+            android:textColorHint="#4D4D4D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <EditText
+            android:id="@+id/editText_albumArtist"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Artist"
+            android:text="@={album.artist}"
+            android:textColor="#DCDCDC"
+            android:textColorHint="#4D4D4D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editText_albumTitle" />
+
+        <EditText
+            android:id="@+id/editText_albumGenre"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Genre"
+            android:text="@={album.genre}"
+            android:textColor="#DCDCDC"
+            android:textColorHint="#4D4D4D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editText_albumArtist" />
+
+        <EditText
+            android:id="@+id/editText_albumReleasedYear"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Released Year"
+            android:text="@={album.releasedYear}"
+            android:textColor="#DCDCDC"
+            android:textColorHint="#4D4D4D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editText_albumGenre" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:gravity="center"
+            android:onClick="onClickInfo"
+            android:text="Add"
+            android:textColor="#DCDCDC"
+            app:cornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editText_albumReleasedYear"
+            tools:text="Add" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="back button"
+            android:contextClickable="true"
+            android:onClick="@clickHandlers.onClickBackBtn"
+            android:src="@drawable/arrow"
+            app:backgroundTint="@color/design_default_color_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="#DCDCDC" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

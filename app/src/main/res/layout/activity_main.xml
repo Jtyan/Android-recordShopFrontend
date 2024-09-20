@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/afacad_bold"
+            android:fontFamily="@font/afacad_medium"
             android:text="@string/my_record_shop"
             android:textColor="#E5E5E5"
             android:textSize="30sp"
@@ -40,6 +40,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_header" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_addNewAlbum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="add album button"
+            android:contextClickable="true"
+            android:onClick="onClickAddNewAlbumPageBtn"
+            android:src="@drawable/add"
+            app:backgroundTint="@color/design_default_color_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="#DCDCDC" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

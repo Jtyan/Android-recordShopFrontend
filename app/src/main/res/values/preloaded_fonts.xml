@@ -3,6 +3,7 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/adlam_display</item>
         <item>@font/afacad_bold</item>
+        <item>@font/afacad_medium</item>
         <item>@font/agbalumo</item>
     </array>
 </resources>
