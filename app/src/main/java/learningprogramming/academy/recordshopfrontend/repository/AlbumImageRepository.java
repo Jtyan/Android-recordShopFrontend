@@ -22,9 +22,9 @@ import retrofit2.Response;
 public class AlbumImageRepository {
     private AlbumImageService albumImageService;
 
-    public void fetchAlbumImage(String albumName, ImageView imageView) {
+    public void fetchAlbumImage(String albumNameWithArtist, ImageView imageView) {
         albumImageService = RetrofitInstance.getImageService();
-        Call<AlbumImageModel> call = albumImageService.searchAlbum(albumName, "album");
+        Call<AlbumImageModel> call = albumImageService.searchAlbum(albumNameWithArtist, "album");
 
         call.enqueue(new Callback<AlbumImageModel>() {
             @Override

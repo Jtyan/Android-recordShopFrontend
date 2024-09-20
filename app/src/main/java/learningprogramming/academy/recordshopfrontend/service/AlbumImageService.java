@@ -7,5 +7,5 @@ import retrofit2.http.Query;
 
 public interface AlbumImageService {
     @GET("search")
-    Call<AlbumImageModel> searchAlbum(@Query("term") String albumName, @Query("entity") String entity);
+    Call<AlbumImageModel> searchAlbum(@Query("term") String albumNameWithArtist, @Query("entity") String entity);
 }
