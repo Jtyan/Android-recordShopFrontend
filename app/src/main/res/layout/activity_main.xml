@@ -7,6 +7,9 @@
         <variable
             name="album"
             type="learningprogramming.academy.recordshopfrontend.model.Album" />
+        <variable
+            name="clickHandlers"
+            type="learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivityClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +51,7 @@
             android:layout_marginBottom="24dp"
             android:contentDescription="add album button"
             android:contextClickable="true"
-            android:onClick="onClickAddNewAlbumPageBtn"
+            android:onClick="@{clickHandlers.onAddNewAlbumPageBtnClicked}"
             android:src="@drawable/add"
             app:backgroundTint="@color/design_default_color_primary"
             app:layout_constraintBottom_toBottomOf="parent"
