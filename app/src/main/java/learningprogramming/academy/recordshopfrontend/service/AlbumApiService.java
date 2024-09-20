@@ -24,4 +24,10 @@ public interface AlbumApiService {
     @POST("album")
     Call<Album> addNewAlbum(@Body Album album);
 
+    @PUT("album/{id}")
+    Call<Album> updateAlbum(@Path("id") long id, @Body Album album);
+
+    @DELETE("album/{id}")
+    Call<String> deleteAlbum(@Path("id") long id);
+
 }
