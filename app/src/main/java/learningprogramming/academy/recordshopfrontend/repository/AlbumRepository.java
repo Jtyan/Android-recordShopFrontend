@@ -97,19 +97,18 @@ public class AlbumRepository {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                System.out.println(response.body());
                 Toast.makeText(application.getApplicationContext(),
-                                "Album deleted",
+                                response.body(),
                                 Toast.LENGTH_SHORT)
                         .show();
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
-//                Toast.makeText(application.getApplicationContext(),
-//                                "Unable to delete Album",
-//                                Toast.LENGTH_SHORT)
-//                        .show();
+                Toast.makeText(application.getApplicationContext(),
+                                "Unable to delete Album",
+                                Toast.LENGTH_SHORT)
+                        .show();
                 Log.e("Delete Request", throwable.getMessage());
             }
         });
