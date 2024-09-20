@@ -1,12 +1,16 @@
 package learningprogramming.academy.recordshopfrontend.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.library.baseAdapters.BR;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Album extends BaseObservable {
+public class Album extends BaseObservable implements Parcelable {
 
     @SerializedName("id")
     private long id;
@@ -32,6 +36,27 @@ public class Album extends BaseObservable {
 
     public Album() {
     }
+
+    protected Album(Parcel in) {
+        id = in.readLong();
+        title = in.readString();
+        artist = in.readString();
+        releasedYear = in.readString();
+        genre = in.readString();
+        stock = in.readInt();
+    }
+
+    public static final Creator<Album> CREATOR = new Creator<Album>() {
+        @Override
+        public Album createFromParcel(Parcel in) {
+            return new Album(in);
+        }
+
+        @Override
+        public Album[] newArray(int size) {
+            return new Album[size];
+        }
+    };
 
     @Bindable
     public long getId() {
@@ -87,5 +112,20 @@ public class Album extends BaseObservable {
     public void setStock(int stock) {
         this.stock = stock;
         notifyPropertyChanged(BR.stock);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(title);
+        dest.writeString(artist);
+        dest.writeString(releasedYear);
+        dest.writeString(genre);
+        dest.writeInt(stock);
     }
 }
