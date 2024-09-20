@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import learningprogramming.academy.recordshopfrontend.model.Album;
+import learningprogramming.academy.recordshopfrontend.model.AlbumImageModel;
 import learningprogramming.academy.recordshopfrontend.repository.AlbumRepository;
 
 public class MainActivityViewModel extends AndroidViewModel {
@@ -22,4 +23,9 @@ public class MainActivityViewModel extends AndroidViewModel {
     public LiveData<List<Album>> getAllAlbums() {
         return albumRepository.getMutableLiveData();
     }
+
+    public void addNewAlbum(Album album) {
+        albumRepository.addNewAlbum(album);
+    }
+
 }
