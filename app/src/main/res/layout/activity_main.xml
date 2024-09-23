@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="album"
             type="learningprogramming.academy.recordshopfrontend.model.Album" />
+
         <variable
             name="clickHandlers"
             type="learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivityClickHandler" />
@@ -17,13 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/design_default_color_primary"
-        tools:context=".ui.mainactivity.MainActivity">
+        tools:context=".ui.mainactivity.MainActivity"
+        android:theme="@style/SearchViewStyle">
+
 
         <TextView
             android:id="@+id/textView_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/afacad_medium"
             android:text="@string/my_record_shop"
             android:textColor="#E5E5E5"
@@ -33,16 +37,36 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="My Record Shop" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/search_view_bg"
+            android:backgroundTint="#1E1E1E"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:focusable="true"
+            android:onClick="@android:string/search_go"
+            app:autoShowKeyboard="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_header"
+            app:queryHint="Search..." />
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="#1E1E1E"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_header" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_addNewAlbum"

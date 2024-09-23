@@ -3,9 +3,11 @@ package learningprogramming.academy.recordshopfrontend.ui.mainactivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private MainActivityClickHandler handlers;
     private ActivityMainBinding binding;
     private static final String ALBUM_KEY = "album";
+    private SearchView searchView;
+    private List<Album> filteredAlbum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,38 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         getAllAlbums();
         handlers = new MainActivityClickHandler(this);
         binding.setClickHandlers(handlers);
+
+        searchView = findViewById(R.id.search_view);
+        searchView.clearFocus();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterSearch(newText);
+                return true;
+            }
+        });
+    }
+
+    private void filterSearch(String newText) {
+        newText = newText.toLowerCase();
+        filteredAlbum = new ArrayList<>();
+        for (Album album : albumList) {
+            if (album.getTitle().toLowerCase().contains(newText)
+                    || album.getArtist().toLowerCase().contains(newText)) {
+                filteredAlbum.add(album);
+            }
+        }
+        if (filteredAlbum.isEmpty() && !newText.isBlank()) {
+            Toast.makeText(MainActivity.this, "No album found", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.setFilteredList(filteredAlbum);
+        }
     }
 
     private void getAllAlbums() {
@@ -78,7 +114,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     @Override
     public void onItemClick(int position) {
         Intent i = new Intent(MainActivity.this, UpdateAlbumActivity.class);
-        i.putExtra(ALBUM_KEY, albumList.get(position));
+        if (filteredAlbum == null || filteredAlbum.isEmpty()) {
+            i.putExtra(ALBUM_KEY, albumList.get(position));
+        } else {
+            i.putExtra(ALBUM_KEY, filteredAlbum.get(position));
+        }
         startActivity(i);
     }
 }

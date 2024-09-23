@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import learningprogramming.academy.recordshopfrontend.R;
@@ -73,6 +74,11 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
                 }
             });
         }
+    }
+
+    public void setFilteredList(List<Album> filteredList) {
+        albumList = filteredList;
+        notifyDataSetChanged();
     }
 
 }
