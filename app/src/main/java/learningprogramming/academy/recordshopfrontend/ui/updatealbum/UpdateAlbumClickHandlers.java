@@ -1,6 +1,8 @@
 package learningprogramming.academy.recordshopfrontend.ui.updatealbum;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -49,14 +51,21 @@ public class UpdateAlbumClickHandlers {
     }
 
     public void onDeleteBtnClicked(View view) {
-        Intent i = new Intent(context, MainActivity.class);
 
-        albumId = album.getId();
-
-        viewModel.deleteAlbum(albumId);
-
-        context.startActivity(i);
-
+        new AlertDialog.Builder(context)
+                .setTitle("Delete Album")
+                .setMessage("Are you sure you want to delete this album?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(context, MainActivity.class);
+                        albumId = album.getId();
+                        viewModel.deleteAlbum(albumId);
+                        context.startActivity(i);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     public void onBackButtonClick(View view) {
