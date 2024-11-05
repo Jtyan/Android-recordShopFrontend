@@ -6,9 +6,10 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
-import androidx.databinding.library.baseAdapters.BR;
 
 import com.google.gson.annotations.SerializedName;
+
+import learningprogramming.academy.recordshopfrontend.BR;
 
 public class Album extends BaseObservable implements Parcelable {
 
@@ -24,14 +25,17 @@ public class Album extends BaseObservable implements Parcelable {
     private String genre;
     @SerializedName("stock")
     private int stock;
+    @SerializedName("albumCoverURL")
+    private String albumCoverURL;
 
-    public Album(long id, String title, String artist, String releasedYear, String genre, int stock) {
+    public Album(long id, String title, String artist, String releasedYear, String genre, int stock, String albumCoverURL) {
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.releasedYear = releasedYear;
         this.genre = genre;
         this.stock = stock;
+        this.albumCoverURL = albumCoverURL;
     }
 
     public Album() {
@@ -44,6 +48,7 @@ public class Album extends BaseObservable implements Parcelable {
         releasedYear = in.readString();
         genre = in.readString();
         stock = in.readInt();
+        albumCoverURL = in.readString();
     }
 
     public static final Creator<Album> CREATOR = new Creator<Album>() {
@@ -114,6 +119,17 @@ public class Album extends BaseObservable implements Parcelable {
         notifyPropertyChanged(BR.stock);
     }
 
+    @Bindable
+    public String getAlbumCoverURL() {
+        return artist;
+    }
+
+    public void setAlbumCoverURL(String albumCoverURL) {
+        this.albumCoverURL = albumCoverURL;
+        notifyPropertyChanged(BR.albumCoverURL);
+
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -127,5 +143,6 @@ public class Album extends BaseObservable implements Parcelable {
         dest.writeString(releasedYear);
         dest.writeString(genre);
         dest.writeInt(stock);
+        dest.writeString(albumCoverURL);
     }
 }
