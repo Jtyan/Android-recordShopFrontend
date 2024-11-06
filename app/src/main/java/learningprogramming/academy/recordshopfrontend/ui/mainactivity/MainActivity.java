@@ -23,7 +23,6 @@ import java.util.List;
 import learningprogramming.academy.recordshopfrontend.R;
 import learningprogramming.academy.recordshopfrontend.databinding.ActivityMainBinding;
 import learningprogramming.academy.recordshopfrontend.model.Album;
-import learningprogramming.academy.recordshopfrontend.ui.addAlbum.AddNewAlbumActivity;
 import learningprogramming.academy.recordshopfrontend.ui.updatealbum.UpdateAlbumActivity;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {

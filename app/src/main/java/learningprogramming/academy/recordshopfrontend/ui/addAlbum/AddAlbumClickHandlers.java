@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import learningprogramming.academy.recordshopfrontend.model.Album;
+import learningprogramming.academy.recordshopfrontend.ui.mainactivity.AlbumAdapter;
 import learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivity;
 import learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivityViewModel;
 
@@ -32,7 +33,8 @@ public class AddAlbumClickHandlers {
                     album.getArtist(),
                     album.getReleasedYear(),
                     album.getGenre(),
-                    album.getStock()
+                    album.getStock(),
+                    album.getAlbumCoverURL()
             );
             viewModel.addNewAlbum(newAlbum);
             context.startActivity(i);

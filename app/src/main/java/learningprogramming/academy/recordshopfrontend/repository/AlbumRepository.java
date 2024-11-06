@@ -32,7 +32,14 @@ public class AlbumRepository {
             @Override
             public void onResponse(@NonNull Call<List<Album>> call, @NonNull Response<List<Album>> response) {
                 List<Album> albumList = response.body();
+                for (Album item: albumList) {
+                    Log.d("Get-Album", item.toString());
+                }
                 mutableLiveData.setValue(albumList);
+                List<Album> getAlbums = mutableLiveData.getValue();
+                for (Album item: getAlbums) {
+                    Log.d("Get-Album2", item.toString());
+                }
             }
 
             @Override

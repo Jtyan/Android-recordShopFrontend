@@ -33,7 +33,8 @@ public class UpdateAlbumClickHandlers {
                 album.getArtist(),
                 album.getReleasedYear(),
                 album.getGenre(),
-                album.getStock()
+                album.getStock(),
+                album.getAlbumCoverURL()
         );
 
         if (Objects.equals(updatedAlbum.getTitle(), "") ||

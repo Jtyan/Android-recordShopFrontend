@@ -121,7 +121,7 @@ public class Album extends BaseObservable implements Parcelable {
 
     @Bindable
     public String getAlbumCoverURL() {
-        return artist;
+        return albumCoverURL;
     }
 
     public void setAlbumCoverURL(String albumCoverURL) {

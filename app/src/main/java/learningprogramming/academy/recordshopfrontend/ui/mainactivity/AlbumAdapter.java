@@ -9,26 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import learningprogramming.academy.recordshopfrontend.R;
 import learningprogramming.academy.recordshopfrontend.databinding.AlbumItemBinding;
 import learningprogramming.academy.recordshopfrontend.model.Album;
-//import learningprogramming.academy.recordshopfrontend.repository.AlbumImageRepository;
 
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private Context context;
     private List<Album> albumList;
-//    private AlbumImageRepository albumImageRepository;
     private final RecyclerViewInterface recyclerViewInterface;
 
 
     public AlbumAdapter(Context context, List<Album> albumList, RecyclerViewInterface recyclerViewInterface) {
+        this.context = context;
         this.albumList = albumList;
         this.recyclerViewInterface = recyclerViewInterface;
-//        albumImageRepository = new AlbumImageRepository();
     }
 
     @NonNull
@@ -44,8 +43,11 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     @Override
     public void onBindViewHolder(@NonNull AlbumViewHolder holder, int position) {
         Album album = albumList.get(position);
-//        albumImageRepository.fetchAlbumImage((album.getArtist() + " " + album.getTitle()), holder.albumItemBinding.imgViewAlbum);
         holder.albumItemBinding.setAlbum(album);
+            Glide.with(context)
+                    .load(album.getAlbumCoverURL())
+                    .placeholder(R.drawable.music_album)
+                    .into(holder.albumItemBinding.imgViewAlbum);
     }
 
     @Override

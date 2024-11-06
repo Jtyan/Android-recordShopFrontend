@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/design_default_color_primary"
-        tools:context=".ui.mainactivity.MainActivity"
-        android:theme="@style/SearchViewStyle">
+        tools:context=".ui.mainactivity.MainActivity">
 
 
         <TextView
@@ -49,7 +48,6 @@
             android:clickable="true"
             android:contextClickable="true"
             android:focusable="true"
-            android:onClick="@android:string/search_go"
             app:autoShowKeyboard="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
