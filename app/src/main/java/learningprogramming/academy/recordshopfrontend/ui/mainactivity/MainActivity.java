@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         }
         if (filteredAlbum.isEmpty() && !newText.isBlank()) {
             Toast.makeText(MainActivity.this, "No album found", Toast.LENGTH_SHORT).show();
+            adapter.setFilteredList(filteredAlbum);
         } else {
             adapter.setFilteredList(filteredAlbum);
         }
