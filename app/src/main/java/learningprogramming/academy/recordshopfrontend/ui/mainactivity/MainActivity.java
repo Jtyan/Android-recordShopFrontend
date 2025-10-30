@@ -52,7 +52,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         viewModel = new ViewModelProvider(this)
                 .get(MainActivityViewModel.class);
 
-        getAllAlbums();
+        viewModel.getAllAlbums().observe(this, new Observer<List<Album>>() {
+            @Override
+            public void onChanged(List<Album> albumsFromLiveData) {
+                albumList = albumsFromLiveData;
+                displayInRecyclerView();
+            }
+        });
+
+        recyclerView = binding.recyclerView;
+        adapter = new AlbumAdapter(this, albumList, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
         handlers = new MainActivityClickHandler(this);
         binding.setClickHandlers(handlers);
 
@@ -75,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.refreshAlbums();
+        // 2. Clear the search view focus when returning to the main screen
+        if (searchView != null) {
+            searchView.clearFocus();
+        }
     }
 
     private void filterSearch(String newText) {
@@ -105,13 +128,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     private void displayInRecyclerView() {
-        recyclerView = binding.recyclerView;
-        adapter = new AlbumAdapter(this, albumList, this);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        adapter.notifyDataSetChanged();
+        adapter.setFilteredList(albumList);
     }
 
 

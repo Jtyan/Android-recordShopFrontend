@@ -12,6 +12,8 @@ import java.util.List;
 import learningprogramming.academy.recordshopfrontend.model.Album;
 import learningprogramming.academy.recordshopfrontend.service.AlbumApiService;
 import learningprogramming.academy.recordshopfrontend.service.RetrofitInstance;
+import learningprogramming.academy.recordshopfrontend.ui.addAlbum.AlbumAddCallBack;
+import learningprogramming.academy.recordshopfrontend.ui.updatealbum.AlbumUpdateCallback;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,8 +25,11 @@ public class AlbumRepository {
     public AlbumRepository(Application application) {
         this.application = application;
     }
+    public MutableLiveData<List<Album>> getAlbumsLiveData() {
+        return mutableLiveData;
+    }
 
-    public MutableLiveData<List<Album>> getMutableLiveData() {
+    public void fetchAlbums() {
         AlbumApiService albumApiService = RetrofitInstance.getService();
         Call<List<Album>> call = albumApiService.getAllAlbums();
 
@@ -32,14 +37,8 @@ public class AlbumRepository {
             @Override
             public void onResponse(@NonNull Call<List<Album>> call, @NonNull Response<List<Album>> response) {
                 List<Album> albumList = response.body();
-                for (Album item: albumList) {
-                    Log.d("Get-Album", item.toString());
-                }
+
                 mutableLiveData.setValue(albumList);
-                List<Album> getAlbums = mutableLiveData.getValue();
-                for (Album item: getAlbums) {
-                    Log.d("Get-Album2", item.toString());
-                }
             }
 
             @Override
@@ -47,10 +46,9 @@ public class AlbumRepository {
                 Log.e("HTTP failure", throwable.getMessage());
             }
         });
-        return mutableLiveData;
     }
 
-    public void addNewAlbum(Album album) {
+    public void addNewAlbum(Album album, AlbumAddCallBack callback) {
         AlbumApiService albumApiService = RetrofitInstance.getService();
         Call<Album> call = albumApiService.addNewAlbum(album);
 
@@ -61,6 +59,10 @@ public class AlbumRepository {
                                 "Album added to Database",
                                 Toast.LENGTH_SHORT)
                         .show();
+
+                if (callback != null) {
+                    callback.onAlbumAdded();
+                }
             }
 
             @Override
@@ -69,11 +71,15 @@ public class AlbumRepository {
                                 "Unable to add album to Database",
                                 Toast.LENGTH_SHORT)
                         .show();
+
+                if (callback != null) {
+                    callback.onAlbumAdded();
+                }
                 Log.e("Add album failed", throwable.getMessage());
             }
         });
     }
-    public void updateAlbum(long id, Album album) {
+    public void updateAlbum(long id, Album album, AlbumUpdateCallback callback) {
         AlbumApiService albumApiService = RetrofitInstance.getService();
         Call<Album> call = albumApiService.updateAlbum(id, album);
 
@@ -84,6 +90,9 @@ public class AlbumRepository {
                                 "Album updated",
                                 Toast.LENGTH_SHORT)
                         .show();
+                if (callback != null) {
+                    callback.onAlbumUpdated();
+                }
             }
 
             @Override
@@ -93,6 +102,10 @@ public class AlbumRepository {
                                 Toast.LENGTH_SHORT)
                         .show();
                 Log.e("Put Request", throwable.getMessage());
+
+                if (callback != null) {
+                    callback.onAlbumUpdated();
+                }
             }
         });
     }

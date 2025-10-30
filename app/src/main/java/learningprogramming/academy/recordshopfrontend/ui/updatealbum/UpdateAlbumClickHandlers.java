@@ -13,7 +13,7 @@ import learningprogramming.academy.recordshopfrontend.model.Album;
 import learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivity;
 import learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivityViewModel;
 
-public class UpdateAlbumClickHandlers {
+public class UpdateAlbumClickHandlers implements AlbumUpdateCallback {
 
     private Album album;
     private Context context;
@@ -45,10 +45,8 @@ public class UpdateAlbumClickHandlers {
         } else {
             Intent i = new Intent(context, MainActivity.class);
             albumId = album.getId();
-            viewModel.updateAlbum(albumId, updatedAlbum);
-            context.startActivity(i);
+            viewModel.updateAlbum(albumId, updatedAlbum, this);
         }
-
     }
 
     public void onDeleteBtnClicked(View view) {
@@ -72,5 +70,17 @@ public class UpdateAlbumClickHandlers {
     public void onBackButtonClick(View view) {
         Intent i = new Intent(context, MainActivity.class);
         context.startActivity(i);
+    }
+
+    @Override
+    public void onAlbumUpdated() {
+        // Navigation ONLY happens AFTER the API request completes (success or failure)
+        Intent i = new Intent(context, MainActivity.class);
+        context.startActivity(i);
+
+        // Optional: If 'context' is the AddNewAlbumActivity, finish it
+        if (context instanceof UpdateAlbumActivity) {
+            ((UpdateAlbumActivity) context).finish();
+        }
     }
 }

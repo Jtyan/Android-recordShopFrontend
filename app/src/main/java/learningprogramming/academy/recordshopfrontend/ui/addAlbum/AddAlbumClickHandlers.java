@@ -6,11 +6,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import learningprogramming.academy.recordshopfrontend.model.Album;
-import learningprogramming.academy.recordshopfrontend.ui.mainactivity.AlbumAdapter;
 import learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivity;
 import learningprogramming.academy.recordshopfrontend.ui.mainactivity.MainActivityViewModel;
 
-public class AddAlbumClickHandlers {
+public class AddAlbumClickHandlers implements AlbumAddCallBack {
     private Album album;
     private Context context;
     private MainActivityViewModel viewModel;
@@ -32,12 +31,24 @@ public class AddAlbumClickHandlers {
                     album.getTitle(),
                     album.getArtist(),
                     album.getReleasedYear(),
-                    album.getGenre(),
+                    album.getGenre().toUpperCase(),
                     album.getStock(),
                     album.getAlbumCoverURL()
             );
-            viewModel.addNewAlbum(newAlbum);
-            context.startActivity(i);
+            viewModel.addNewAlbum(newAlbum, this);
+
+        }
+    }
+
+    @Override
+    public void onAlbumAdded() {
+        // Navigation ONLY happens AFTER the API request completes (success or failure)
+        Intent i = new Intent(context, MainActivity.class);
+        context.startActivity(i);
+
+        // Optional: If 'context' is the AddNewAlbumActivity, finish it
+        if (context instanceof AddNewAlbumActivity) {
+            ((AddNewAlbumActivity) context).finish();
         }
     }
 
