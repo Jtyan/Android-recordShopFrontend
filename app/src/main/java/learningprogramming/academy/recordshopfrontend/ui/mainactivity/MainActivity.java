@@ -1,8 +1,9 @@
 package learningprogramming.academy.recordshopfrontend.ui.mainactivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -57,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         searchView = findViewById(R.id.search_view);
         searchView.clearFocus();
+
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(Color.parseColor("#E5E5E5"));
+        searchEditText.setHintTextColor(Color.parseColor("#888888"));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
