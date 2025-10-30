@@ -32,7 +32,11 @@ public class UpdateAlbumActivity extends AppCompatActivity {
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update_album);
-
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.updateAlbum), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         MainActivityViewModel viewModel = new ViewModelProvider(this)
                 .get(MainActivityViewModel.class);
 
